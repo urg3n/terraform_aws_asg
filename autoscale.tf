@@ -52,7 +52,7 @@ health_check {
     healthy_threshold = 2
     unhealthy_threshold = 3
     timeout = 5
-    interval = 90
+    interval = 60
     target = "HTTP:80/"
   }
 
