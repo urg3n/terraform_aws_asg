@@ -6,7 +6,7 @@ provider "aws" {
   secret_key = "${var.AWS_SECRET_KEY}"
   region     = "us-east-1"
 }
-
+########### AutoScalingGroup ############
 resource "aws_autoscaling_group" "ASG-urgen" {
     availability_zones = ["us-east-1c"]
     name = "ASG-urgen"
@@ -25,7 +25,7 @@ resource "aws_autoscaling_group" "ASG-urgen" {
         propagate_at_launch = true
     }
 }
-
+########### Launch Configuration ##########
 resource "aws_launch_configuration" "TFLC" {
     name_prefix = "TFLC"
     image_id = "ami-9c1bbb8a"
@@ -42,7 +42,7 @@ resource "aws_launch_configuration" "TFLC" {
         volume_size = "10"
     }
 }
-########### ELB #####################
+########### ELB ############
 resource "aws_elb" "ELB-Terraform" {
 name = "ELB-Terraform"
 security_groups = ["${aws_security_group.ELB-Terraform-SG.id}"]
@@ -63,7 +63,7 @@ health_check {
     lb_protocol = "http"
   }
 }
-########## Security Group ##################
+########## Security Group ############
 resource "aws_security_group" "ELB-Terraform-SG" {
   name = "terraform-SG"
   ingress {
